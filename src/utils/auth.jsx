@@ -1,4 +1,3 @@
-// utils/auth.jsx
 import axios from "axios";
 
 export const isAuthenticated = async () => {
