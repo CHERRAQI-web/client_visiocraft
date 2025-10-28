@@ -15,12 +15,15 @@ export const isAuthenticated = async () => {
 export const logout = async () => {
   try {
     // Le backend va s'occuper de supprimer le cookie.
-    await api.post("/auth/logout");
+    await api.post("/auth/logout", {}, { 
+      withCredentials: true,});
   } catch (error) {
     console.error("Erreur lors du logout :", error);
   } finally {
-    // Nettoyage côté client et redirection.
-    window.location.href = 'https://frontend-visiocraft.vercel.app/login';
+     localStorage.removeItem("token");
+    window.dispatchEvent(new Event("userLoggedOut"));
+    localStorage.setItem("logout", Date.now());
+    window.location.href = "frontend-visiocraft.vercel.app/login";
   }
 };
 
