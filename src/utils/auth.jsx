@@ -20,10 +20,10 @@ export const logout = async () => {
   } catch (error) {
     console.error("Erreur lors du logout :", error);
   } finally {
-     localStorage.removeItem("token");
-    window.dispatchEvent(new Event("userLoggedOut"));
-    localStorage.setItem("logout", Date.now());
-    window.location.href = "frontend-visiocraft.vercel.app/login";
+        localStorage.removeItem("token");
+
+    // Nettoyage côté client et redirection.
+    window.location.href = 'https://frontend-visiocraft.vercel.app/login';
   }
 };
 
